@@ -1,38 +1,346 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Personal Portfolio</title>
+  <title>Professional Portfolio</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f7f8fb;
+      --surface: #ffffff;
+      --surface-strong: #eef1f7;
+      --text: #111827;
+      --muted: #4b5563;
+      --primary: #0f4c81;
+      --accent: #1d8cf8;
+      --border: #d1d5db;
+      --shadow: 0 20px 40px rgba(15, 35, 65, 0.08);
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: linear-gradient(180deg, #f7f8fb 0%, #ffffff 100%);
+      color: var(--text);
+      font-family: inherit;
+      line-height: 1.6;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(29, 140, 248, 0.14), transparent 28%),
+                  radial-gradient(circle at bottom left, rgba(15, 76, 129, 0.08), transparent 24%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .page-wrapper {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px 24px 48px;
+    }
+
+    header {
+      padding: 40px 0 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-mark {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: #fff;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+
+    .brand-name {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 2.2vw, 3.6rem);
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+    }
+
+    .subtitle {
+      max-width: 760px;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 26px;
+    }
+
+    .nav-links a {
+      padding: 12px 18px;
+      text-decoration: none;
+      color: var(--primary);
+      border: 1px solid transparent;
+      border-radius: 999px;
+      transition: all 160ms ease;
+      background: rgba(15, 76, 129, 0.08);
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      background: rgba(15, 76, 129, 0.16);
+      border-color: rgba(15, 76, 129, 0.24);
+    }
+
+    main {
+      display: grid;
+      gap: 36px;
+      margin-top: 42px;
+    }
+
+    section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      padding: 34px;
+    }
+
+    section h2 {
+      font-size: 1.5rem;
+      margin-bottom: 18px;
+      color: var(--text);
+    }
+
+    .section-copy {
+      color: var(--muted);
+      font-size: 1rem;
+      max-width: 720px;
+    }
+
+    .grid-2 {
+      display: grid;
+      gap: 24px;
+    }
+
+    .summary-card,
+    .project-card,
+    .skill-pill {
+      border-radius: 22px;
+    }
+
+    .summary-card {
+      padding: 28px;
+      background: var(--surface-strong);
+      border: 1px solid transparent;
+    }
+
+    .summary-card strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 1rem;
+      color: var(--text);
+    }
+
+    .summary-card p {
+      color: var(--muted);
+    }
+
+    .project-grid {
+      display: grid;
+      gap: 20px;
+    }
+
+    .project-card {
+      padding: 24px;
+      background: var(--surface-strong);
+      border: 1px solid var(--border);
+    }
+
+    .project-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+
+    .project-card p {
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .project-card a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .skill-pill {
+      padding: 10px 16px;
+      background: rgba(15, 76, 129, 0.08);
+      color: var(--text);
+      font-size: 0.95rem;
+      border: 1px solid transparent;
+      transition: transform 140ms ease;
+    }
+
+    .skill-pill:hover {
+      transform: translateY(-2px);
+    }
+
+    .contact-card {
+      display: grid;
+      gap: 18px;
+      padding: 28px;
+      background: linear-gradient(180deg, rgba(15, 76, 129, 0.08), #ffffff);
+      border: 1px solid rgba(15, 76, 129, 0.16);
+    }
+
+    .contact-card p {
+      color: var(--muted);
+    }
+
+    .contact-card a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    footer {
+      margin-top: 28px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    @media (min-width: 768px) {
+      .grid-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page-wrapper {
+        padding: 24px 16px 32px;
+      }
+
+      .nav-links {
+        justify-content: center;
+      }
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <h1>Your Name</h1>
-    <p>Welcome to my personal portfolio.</p>
-  </header>
+  <div class="page-wrapper">
+    <header>
+      <div class="brand">
+        <div class="brand-mark">PM</div>
+        <div class="brand-name">
+          <span>Professional Portfolio</span>
+          <p class="subtitle">A polished academic and career-focused portfolio layout for internships, college applications, and employer review.</p>
+        </div>
+      </div>
 
-  <nav>
-    <ul>
-      <li><a href="#about">About</a></li>
-      <li><a href="#work">Work</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
+      <h1>Hi, I’m Sathyan Murthy</h1>
+      <p class="subtitle">I build practical, user-centered solutions using clean design, strong collaboration, and a focus on results.</p>
 
-  <main>
-    <section id="about">
-      <h2>About Me</h2>
-      <p>Placeholder text about your background, skills, and interests.</p>
-    </section>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#about">About</a>
+        <a href="#work">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
 
-    <section id="work">
-      <h2>Featured Projects</h2>
-      <p>Placeholder text describing a few projects or accomplishments.</p>
-    </section>
-  </main>
+    <main>
+      <section id="about">
+        <h2>About Me</h2>
+        <div class="grid-2">
+          <div class="summary-card">
+            <strong>Background</strong>
+            <p>Incoming UCI computer science student with a foundation in Java, JavaScript, HTML, and CSS. I have completed AP Computer Science Principles and AP Computer Science A while building classroom and personal projects.</p>
+          </div>
+          <div class="summary-card">
+            <strong>Focus Areas</strong>
+            <p>I am passionate about the future of technology in medicine and how software can improve healthcare, patient outcomes, and data-driven research.</p>
+          </div>
+        </div>
+      </section>
 
-  <footer>
-    <p>Contact: email@example.com | © 2026 Your Name</p>
-  </footer>
+      <section id="work">
+        <h2>Featured Projects</h2>
+        <div class="project-grid">
+          <article class="project-card">
+            <h3>Portfolio Website Refresh</h3>
+            <p>Modernized a personal portfolio with a clean visual design, responsive layout, and clear project sections that appeal to colleges and recruiters.</p>
+            <a href="#contact">View details</a>
+          </article>
+
+          <article class="project-card">
+            <h3>Student Capstone Project</h3>
+            <p>Designed a web application prototype to support team collaboration, including user flows, dashboard components, and usability improvements.</p>
+            <a href="#contact">Learn more</a>
+          </article>
+        </div>
+      </section>
+
+      <section id="skills">
+        <h2>Core Skills</h2>
+        <p class="section-copy">A strong foundation in technical skills and soft skills that help deliver projects on time and with professional quality.</p>
+        <div class="skills-list">
+          <span class="skill-pill">Java</span>
+          <span class="skill-pill">JavaScript</span>
+          <span class="skill-pill">HTML &amp; CSS</span>
+          <span class="skill-pill">AP Computer Science A</span>
+          <span class="skill-pill">AP Computer Science Principles</span>
+          <span class="skill-pill">Healthcare Technology</span>
+        </div>
+      </section>
+
+      <section id="contact">
+        <h2>Contact</h2>
+        <div class="contact-card">
+          <p>If you would like to connect about academic opportunities, internships, or collaborative work, please reach out.</p>
+          <p>Email: <a href="mailto:sathyansmurthy@gmail.com">sathyansmurthy@gmail.com</a></p>
+          <p>© 2026 Sathyan Murthy</p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      Designed for academic and career-ready presentation.
+    </footer>
+  </div>
 </body>
 </html>
