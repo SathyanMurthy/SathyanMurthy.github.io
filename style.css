@@ -1,10 +1,10 @@
 /* --- Global Resets & Variables --- */
 :root {
-    --bg-color: #0f172a;       /* Dark slate blue background */
-    --surface: #1e293b;        /* Lighter slate for cards */
-    --text-main: #f8fafc;      /* Off-white for readability */
-    --text-muted: #94a3b8;     /* Subtle grey for paragraphs */
-    --accent: #38bdf8;         /* Vibrant sky blue */
+    --bg-color: #0f172a;       
+    --surface: #1e293b;        
+    --text-main: #f8fafc;      
+    --text-muted: #94a3b8;     
+    --accent: #38bdf8;         
     --accent-hover: #0ea5e9;
     --border: rgba(255, 255, 255, 0.1);
     --transition-speed: 0.3s;
@@ -28,7 +28,6 @@ body {
     overflow-x: hidden;
 }
 
-/* Background ambient glow effect */
 body::before {
     content: "";
     position: fixed;
@@ -49,7 +48,7 @@ body::before {
     top: 0;
     width: 100%;
     background-color: rgba(15, 23, 42, 0.85);
-    backdrop-filter: blur(12px); /* UI Effect: Frosted glass */
+    backdrop-filter: blur(12px); 
     border-bottom: 1px solid var(--border);
     z-index: 1000;
 }
@@ -90,7 +89,7 @@ body::before {
     display: flex;
     align-items: center;
     padding: 0 10%;
-    margin-top: 60px; /* Offset for navbar */
+    margin-top: 60px; 
 }
 
 .hero-content h1 {
@@ -230,7 +229,6 @@ body::before {
     flex-direction: column;
 }
 
-/* UI Effect: Hover lift & neon glow */
 .project-card:hover {
     transform: translateY(-8px);
     border-color: rgba(56, 189, 248, 0.4);
@@ -297,7 +295,7 @@ footer {
         padding: 1rem 5%;
     }
     .nav-links {
-        display: none; /* In a full build, you'd add a hamburger menu here */
+        display: none; 
     }
     .hero, .page-section, .contact-section {
         padding: 4rem 5%;
